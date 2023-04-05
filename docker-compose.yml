@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: r9K6fsx234KLj8)a
+      POSTGRES_DB: jwt_security
+    networks:
+      - spring-security-jwt-network
+    restart: unless-stopped
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: kamilli818@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: r9K6fsx234KLj8)a
+    networks:
+      - spring-security-jwt-network
+    restart: unless-stopped
+
+networks:
+  spring-security-jwt-network:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
